@@ -1,0 +1,51 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.navbar {
+  padding: 20px;
+  height: 15%;
+  background-color: #fff;
+}
+
+.custom-section {
+  padding: 20px;
+  height: 85%;
+  background-color: #F5F6F8;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    flex-direction: row;
+  }
+
+  .navbar {
+    padding: 40px;
+    width: 176px;
+    height: auto;
+  }
+
+  .custom-section {
+    padding: 40px;
+    flex-grow: 1;
+    height: auto;
+  }
+
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  li:last-child {
+    border-bottom: none;
+  }
+}
