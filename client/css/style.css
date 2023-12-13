@@ -1,30 +1,142 @@
 .container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-width: 400px;
+  height: 150vh;
 }
 
 .navbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 20px;
   height: 15%;
   background-color: #fff;
 }
 
+.title-navbar {
+  color: #6b6b6b;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.title-options {
+  margin-left: 10px;
+  color: #656ed3;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.13px;
+}
+
+.link-navbar,
+.link-navbar-open {
+  margin-left: 13px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.11px;
+}
+
+.link-navbar-open {
+  color: #656ed3;
+}
+
 .custom-section {
   padding: 20px;
   height: 85%;
-  background-color: #F5F6F8;
+  background-color: #f5f6f8;
+}
+
+.table-name {
+  color: #6b6b6b;
+  font-family: 'Poppins', sans-serif;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.36px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  max-height: 100%;
+  background-color: #fff;
+}
+
+thead th {
+  border: none;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.17px;
+  color: rgba(51, 77, 110, 0.5);
+}
+
+th,
+td {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 8px;
+  text-align: left;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.17px;
+  height: 20px;
+}
+
+tr:not(:first-child) {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+th:first-child,
+td:first-child {
+  border-left: none;
+}
+
+th:last-child,
+td:last-child {
+  border-right: none;
 }
 
 @media screen and (min-width: 768px) {
   .container {
     flex-direction: row;
+    height: 100vh;
   }
 
   .navbar {
+    justify-content: flex-start;
+    align-items: flex-start;
     padding: 40px;
     width: 176px;
     height: auto;
+  }
+
+  .options-navbar {
+    display: flex;
+    flex-direction: column;
+    margin-top: 46px;
+    gap: 16px;
+  }
+
+  .link-navbar,
+  .link-navbar-open {
+    margin-left: 20px;
   }
 
   .custom-section {
@@ -37,15 +149,10 @@
     text-align: center;
     color: #333;
   }
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  li {
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
-  }
-  li:last-child {
-    border-bottom: none;
+
+  th,
+  td {
+    display: table-cell;
+    height: 20px;
   }
 }

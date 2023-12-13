@@ -9,16 +9,24 @@
   </head>
   <body class="container">
     <nav class="navbar">
-      <h2>COURSE PROJECT</h2>
-      <h3>HUMAN RESOURSES</h3>
-      <a href="index.html">Home</a></br>
-      <a href="technologies.html">Technologies</a>
+      <h2 class="title-navbar">COURSE PROJECT</h2>
+      <div class="options-navbar">
+        <h3 class="title-options">HUMAN RESOURSES</h3>
+        <a class="link-navbar" href="index.html">Home</a>
+        <a class="link-navbar-open" href="technologies.html">Technologies</a>
+      </div>
     </nav>
     <section class="custom-section">
-        <div class="container">
-            <h1>Listado de Tecnologías</h1>
-            <ul id="technologyList"></ul>
-        </div>
+      <h2 class="table-name">Technologies list</h2>
+      <table id="technologyTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+          </tr>
+        </thead>
+        <tbody id="technologyList"></tbody>
+      </table>
     </section>
     <script src="js/script.js"></script>
   </body>
