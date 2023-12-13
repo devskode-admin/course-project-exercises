@@ -2,11 +2,11 @@ import Technology from '../Models/Technology';
 
 const list = async (req, res) => {
   try {
-    const result = await Technology.find(req.query);
+    const result = await Technology.find();
 
     if (!result.length) {
       return res.status(404).json({
-        message: 'There are not Technologi',
+        message: 'There are no Technologies',
         data: undefined,
         error: true,
       });
@@ -30,7 +30,7 @@ const findOne = async (req, res) => {
     const result = await Technology.findOne({ _id: req.params.id });
     if (!result) {
       return res.status(404).json({
-        message: 'There are not technology',
+        message: 'There are no Technologies',
         data: undefined,
         error: true,
       });
@@ -107,7 +107,7 @@ const deleteItem = async (req, res) => {
     const result = await Technology.deleteOne({ _id: req.params.id });
     if (!result.deletedCount) {
       return res.status(404).json({
-        message: 'Technology does not exists',
+        message: 'Technology does not exist',
         data: undefined,
         error: true,
       });
