@@ -4,7 +4,7 @@ import Professional from '../Models/Professional';
 
 const list = async (req, res) => {
   try {
-    const result = await Professional.find(req.query);
+    const result = await Professional.find();
 
     if (!result.length) {
       return res.status(404).json({
@@ -78,8 +78,15 @@ const create = async (req, res) => {
 
 const update = async (req, res) => {
   try {
-    // eslint-disable-next-line max-len
     const updatedProfessional = await Professional.findByIdAndUpdate(req.params.id, req.body, { new: true });
+
+    if (!updatedProfessional) {
+      return res.status(404).json({
+        message: 'Professional was not found',
+        data: undefined,
+        error: true,
+      });
+    }
 
     return res.status(201).json({
       message: 'Professional updated',
