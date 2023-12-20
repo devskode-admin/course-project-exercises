@@ -1,7 +1,6 @@
 import Joi from 'joi';
 
 const validateCreation = (req, res, next) => {
-  // Create Schema with validations
   const professionalCreate = Joi.object({
     first_name: Joi.string()
       .min(3)
@@ -30,7 +29,7 @@ const validateCreation = (req, res, next) => {
         'any.required': 'Last name is required',
       }),
     email: Joi.string()
-      .regex(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
+      .pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
       .required()
       .messages({
         'string.pattern.base': 'Email must have a valid format',
@@ -39,46 +38,29 @@ const validateCreation = (req, res, next) => {
       }),
     password: Joi.string()
       .min(8)
-      .pattern(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}[\]:;<>,.?~\\-]).{8,}$/,
-      )
+      .pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}[\]:;<>,.?~\\-]).{8,}$/)
       .required()
       .messages({
-        'string.pattern.base':
-          'Password must contain at least one uppercase, lowercase, number and special character',
+        'string.pattern.base': 'Password must contain at least one uppercase, lowercase, number and special character',
         'any.required': 'Password is required',
         'string.min': 'Password must have at least 8 chars',
         'string.empty': 'Password is not allowed to be empty',
       }),
-    role: Joi.string()
-      .valid('Director', 'Area Manager', 'Developer')
-      .required()
-      .messages({
-        'any.only':
-          'Role must be one of this: Director, Area Manager, Developer',
-        'any.required': 'Role is required',
-      }),
+    role: Joi.string().valid('Director', 'Area Manager', 'Developer').required().messages({
+      'any.only': 'Role must be one of this: Director, Area Manager, Developer',
+      'any.required': 'Role is required',
+    }),
     module: Joi.string()
-      .valid(
-        'Human Resources',
-        'Full Stack Course',
-        'Internship',
-        'Interview',
-        'Onboarding',
-        'Tracking',
-      )
+      .valid('Human Resources', 'Full Stack Course', 'Internship', 'Interview', 'Onboarding', 'Tracking')
       .required()
       .messages({
-        'any.only':
-          'Module must be one of this: Human Resources, Full Stack Course, Internship, Interview, Onboarding, Tracking',
+        'any.only': 'Module must be one of this: Human Resources, Full Stack Course, Internship, Interview, Onboarding, Tracking',
         'any.required': 'Module is required',
       }),
   });
 
-  // Validate Schema with the body of the request
   const validation = professionalCreate.validate(req.body);
 
-  // If exist an error, return a 400 response with the error detail
   if (validation.error) {
     return res.status(400).json({
       error: true,
@@ -87,7 +69,6 @@ const validateCreation = (req, res, next) => {
     });
   }
 
-  // If not exist an error, "next" is executed to continue with the next function
   return next();
 };
 
@@ -114,7 +95,7 @@ const validateUpdate = (req, res, next) => {
         'string.pattern.base': 'Last name must contain only letters',
       }),
     email: Joi.string()
-      .regex(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
+      .pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
       .messages({
         'string.pattern.base': 'Email must have a valid format',
       }),
@@ -125,14 +106,12 @@ const validateUpdate = (req, res, next) => {
         'string.pattern.base': 'Password must contain at least one uppercase, lowercase, number and special character',
         'string.min': 'Password must have at least 8 chars',
       }),
-    role: Joi.string().valid('Director', 'Area Manager', 'Developer').required().messages({
+    role: Joi.string().valid('Director', 'Area Manager', 'Developer').messages({
       'any.only': 'Role must be one of this: Director, Area Manager, Developer',
     }),
-    module: Joi.string()
-      .valid('Human Resources', 'Full Stack Course', 'Internship', 'Interview', 'Onboarding', 'Tracking')
-      .messages({
-        'any.only': 'Module must be one of this: Human Resources, Full Stack Course, Internship, Interview, Onboarding, Tracking',
-      }),
+    module: Joi.string().valid('Human Resources', 'Full Stack Course', 'Internship', 'Interview', 'Onboarding', 'Tracking').messages({
+      'any.only': 'Module must be one of this: Human Resources, Full Stack Course, Internship, Interview, Onboarding, Tracking',
+    }),
   });
 
   const validation = professionalUpdate.validate(req.body);

@@ -4,17 +4,17 @@ import Professional from '../Models/Professional';
 
 const list = async (req, res) => {
   try {
-    const result = await Professional.find(req.query);
+    const result = await Professional.find();
 
     if (!result.length) {
       return res.status(404).json({
-        message: 'There are not Professional',
+        message: 'There are no professionals to show',
         data: undefined,
         error: true,
       });
     }
     return res.status(200).json({
-      message: 'List of Professional',
+      message: 'List of professionals',
       data: result,
       error: false,
     });
@@ -32,13 +32,13 @@ const findOne = async (req, res) => {
     const result = await Professional.findOne({ _id: req.params.id });
     if (!result) {
       return res.status(404).json({
-        message: 'There are not Professional',
+        message: 'Professional was not found',
         data: undefined,
         error: true,
       });
     }
     return res.status(200).json({
-      message: 'Professional Found',
+      message: 'Professional found',
       data: result,
       error: false,
     });
@@ -78,8 +78,15 @@ const create = async (req, res) => {
 
 const update = async (req, res) => {
   try {
-    // eslint-disable-next-line max-len
     const updatedProfessional = await Professional.findByIdAndUpdate(req.params.id, req.body, { new: true });
+
+    if (!updatedProfessional) {
+      return res.status(404).json({
+        message: 'Professional was not found',
+        data: undefined,
+        error: true,
+      });
+    }
 
     return res.status(201).json({
       message: 'Professional updated',
@@ -100,7 +107,7 @@ const deleteItem = async (req, res) => {
     const result = await Professional.deleteOne({ _id: req.params.id });
     if (!result.deletedCount) {
       return res.status(404).json({
-        message: 'Professional does not exists',
+        message: 'Professional was not found',
         data: undefined,
         error: true,
       });

@@ -6,7 +6,7 @@ dotenv.config();
 const port = process.env.PORT || 4000;
 
 mongoose.connect(
-  `mongodb+srv://${process.env.ATLAS_DATABASE_USERNAME}:${process.env.ATLAS_DATABASE_PASSWORD}@cluster-course-project.vo2h3bi.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp`,
+  `mongodb+srv://${process.env.ATLAS_DATABASE_USERNAME}:${process.env.ATLAS_DATABASE_PASSWORD}@cluster-course.s8myzwk.mongodb.net/`,
   (error) => {
     if (error) {
       // eslint-disable-next-line no-console

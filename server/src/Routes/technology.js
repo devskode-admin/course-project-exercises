@@ -1,7 +1,7 @@
 /* eslint-disable eol-last */
 import express from 'express';
 import technology from '../Controllers/technology';
-import validations from '../Validations/technology';
+import validations from '../Validations/technology'
 
 const router = express.Router();
 
