@@ -2,7 +2,7 @@ import Technology from '../Models/Technology';
 
 const list = async (req, res) => {
   try {
-    const result = await Technology.find(req.query);
+    const result = await Technology.find();
 
     if (!result.length) {
       return res.status(404).json({

@@ -1,12 +1,11 @@
 /* eslint-disable import/no-unresolved */
 import express from 'express';
 import professional from '../Controllers/professional';
-import validations from '../Validations/professional';
 
 const router = express.Router();
 
 // Create a new professional
-router.post('/', validations.validateCreation, professional.create);
+router.post('/', professional.create);
 
 // Retrieve all buildings
 router.get('/', professional.list);
@@ -15,7 +14,7 @@ router.get('/', professional.list);
 router.get('/:id', professional.findOne);
 
 // Update a professional with id
-router.put('/:id', validations.validateUpdate, professional.update);
+router.put('/:id', professional.update);
 
 // Delete a professional with id
 router.delete('/:id', professional.deleteItem);
